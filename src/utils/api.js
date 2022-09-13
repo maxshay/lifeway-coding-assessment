@@ -3,9 +3,16 @@ import axios from "axios";
 const instance = axios.create({
   baseURL: "https://swapi.dev/api/",
   timeout: 10_000,
-  // headers: { "X-Custom-Header": "foobar" }
 });
 
+/**
+ * Uses SWAPI to search for star wars characters.
+ *
+ * @param {String} searchTerm The string you want to search
+ * @return {Array} response - Response Object
+ * @return {Object} response[0] - Data returned from SWAPI
+ * @return {(Object|String)} response[1] - Any error from axios
+ */
 export const searchUser = async (searchTerm) => {
   try {
     const response = await instance.get(`/people/?search=${searchTerm}`);
@@ -16,6 +23,15 @@ export const searchUser = async (searchTerm) => {
   }
 };
 
+/**
+ * Uses SWAPI to get details on a character.
+ * Composes all species, film, starships names data into a single object.
+ *
+ * @param {String[]} queries The list of SWAPI api resources
+ * @return {Array} response - Response Object
+ * @return {Object} response[0] - Data returned from SWAPI
+ * @return {(Object|String)} response[1] - Any error from axios
+ */
 export const getDetailsFromUrls = async (queries) => {
   try {
     const requests = [];

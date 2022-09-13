@@ -51,7 +51,11 @@ export default function App() {
 
       {(() => {
         if (error)
-          return <p className="mx-4">Error: {JSON.stringify(error)}</p>;
+          return (
+            <p className="mx-4" data-testid="fetch-error">
+              Error: {JSON.stringify(error)}
+            </p>
+          );
         else if (loading)
           return (
             <p className="mx-4" data-testid="loading">
